@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		/*样式随便写的，有点丑，就是一个外观，不要太在意*/
+		*{padding:0;margin:0;list-style: none}
+		.clearfix{zoom:1;}
+		.clearfix:after{display:block;clear:both;visibility:hidden;height:0;content:'';}
+		.box{padding: 10px}
+		.box li{width:25%;float:left;}
+		.pagination{margin:66px auto;}
+		.pagination a {display:block;width:50px;height: 50px;background: red;float:left;text-align: center;line-height: 50px;cursor: pointer;}
+		.pagination a.active{background:yellow;}
+	</style>
+	<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	<script src="pagination.js"></script>
+</head>
+<body>
+	<!-- 数据ul -->
+	<ul class="box clearfix"></ul>
+	<!-- 分页 不要动分页的结构-->
+	<div class="pagination clearfix">
+		<!-- 上一页按钮 -->
+    <a class="icon item left-chevron">
+      <i class="left chevron icon"><--</i>
+    </a>
+    <!-- 下一页按钮 -->
+    <a class="icon item right-chevron">
+      <i class="right chevron icon">--></i>
+    </a>
+  </div>
+</body>
+<script type="text/javascript">
+	let fun = (num) => {
+		$.ajax({
+			url:'https://c.y.qq.com/v8/fcg-bin/v8.fcg',
+			data:{
+		    channel: 'singer',
+		    page: 'list',
+		    key: 'all_all_all',
+		    pagesize: 100,
+		    pagenum: num,
+		    hostUin: 0,
+		    needNewCode: 0,
+		    platform: 'yqq',
+				g_tk: 5381,
+			  inCharset: 'utf-8',
+			  outCharset: 'utf-8',
+			  notice: 0,
+			  format: 'jsonp',
+			  jsonpCallback:'GetSingerListCallback'
+			},
+			dataType:'jsonp',
+			jsonpCallback:'GetSingerListCallback',
+			success:function(res){
+				if(res.code === 0){
+					$('.box').html('')
+					$.each(res.data.list,function(){
+						$('<li>',{'html':this.Fsinger_name}).appendTo('ul')
+					})
+					$('.pagination').pagination({count:res.data.total,btn:true,currentPage:num,numsPerPage:res.data.per_page,allowPage:7,back:fun})
+				}
+			}
+		})
+	}
+	// 初始化ajax获取数据
+	fun(1)
+</script>
+</html>
