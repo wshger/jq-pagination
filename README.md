@@ -8,6 +8,12 @@ pagination.js是编译es5的版本
 1.引入jq
 2.按照下方的实例写好，当然我也有写好的现成的 (*^▽^*)
 
+	```javascript
+	"filterFile":[
+		"/__demoFile.js"
+	]
+	```
+	
 	```html
 	<div class="pagination">
 		<!-- 上一页按钮 -->
