@@ -7,8 +7,7 @@ pagination.js是编译es5的版本
 ### 开始使用
 1.引入jq
 2.按照下方的实例写好，当然我也有写好的现成的 (*^▽^*)
-	
-	```html
+	html
 	<div class="pagination">
 		<!-- 上一页按钮 -->
 		<a class="icon item left-chevron">
@@ -19,9 +18,7 @@ pagination.js是编译es5的版本
 			  <i class="right chevron icon">--></i>
 		</a>
 	</div>
-	```
-	
-	```javascript
+	javascript
 	$('.pagination').pagination({
 		count:res.data.total, //总页数
 		btn:true,//是否开启...
@@ -30,9 +27,7 @@ pagination.js是编译es5的版本
 		allowPage:7,//生成的分页个数
 		back:fun //ajax回调
 	 })
-	```
 
 ### 最后
-
 如果觉得还可以，给个star吧！！
 
