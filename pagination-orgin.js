@@ -83,13 +83,13 @@ $.fn.extend({
 			},
 			method(){
 				let int_active = parseInt(_.find('a.item.aitem.active').text());
-	    	if(0==$(this).index()){
-	    		int_active = int_active-1;
-	    	}else if(_.find('.item').length-1==$(this).index()){
-	    		int_active = int_active+1;
-	    	}else{
-	    		int_active = $(this).text();
-	    	}
+	    			if(0==$(this).index()){
+	    				int_active = int_active-1;
+	    			}else if(_.find('.item').length-1==$(this).index()){
+	    				int_active = int_active+1;
+	    			}else{
+	    				int_active = $(this).text();
+	    			}
 				_.cfg= $.extend(true,{},_.cfg,{currentPage:int_active})
 				_.pagination(_.cfg);
 				_.cfg.back(_.cfg.currentPage);//执行回调
